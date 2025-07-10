@@ -1,7 +1,23 @@
 # Use makefiles as project files generator, Use build/ as the build/output directory that the generated project files will be created 
 
-cmake -G "Unix Makefiles" -B build
+cmake -G "Unix Makefiles" -B build MAKE_BUILD_TYPE=Release
 
 # cmake can invoke the build tool on the developer’s behalf
 
 cmake --build /pathTo/build --config Debug --target MyApp
+
+# Run tests (change to the build folder as there should be a ctests input file created in there that corresponds to the enable_testing() command in the cmakelists.txt
+
+ctest (or -V for verbose)
+
+# Show ouput for tests only that fail:
+
+ctest --output-on-failure
+
+# To install (where . represents the current directory which is the build folder) 
+
+cmake --install . --prefix /path/to/somewhere
+
+# To package a library
+
+cpack -G "ZIP;WIX"

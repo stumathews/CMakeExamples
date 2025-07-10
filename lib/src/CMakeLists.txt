@@ -30,3 +30,30 @@ target_link_libraries(Collector
 target_link_libraries(MyApp
  PRIVATE Collector # We'll link in collector lib to myApp but my App but users of my app wont need Collector
 )
+
+# Define a file set so that it can be installed
+
+target_sources(Collector
+ PUBLIC
+  FILE_SET api
+  TYPE HEADERS
+  BASE_DIRS headers
+  FILES
+   headers/myheader.h
+)
+
+# No destinations are given, install below the base install location.
+# binaries are stored in bin/ libraries are stored in /lib etc.
+install(TARGETS MyApp Collector UI FILE_SET api)
+
+# These are project-specific
+set(CPACK_PACKAGE_NAME ProjectName)
+set(CPACK_PACKAGE_VENDOR MyCompany)
+set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "An example project")
+
+# These lines tend to be the same for every project
+set(CPACK_PACKAGE_INSTALL_DIRECTORY ${CPACK_PACKAGE_NAME})
+set(CPACK_VERBATIM_VARIABLES TRUE)
+
+# This is what writes out the input file for cpack
+include(CPack)

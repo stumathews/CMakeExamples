@@ -12,4 +12,11 @@ cmake_minimum_required(VERSION 4.0)
 
 project(ProjectName VERSION 1.0 LANGUAGES CXX)
 
+# Ask cmake to produce a ctest input file
+enable_testing()
+
 add_executable(Target1 main.cpp)
+
+add_executable(AFewTests tests.cpp)
+
+add_test(NAME BasicTests COMMAND AFewTests)
