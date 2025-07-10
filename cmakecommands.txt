@@ -21,3 +21,7 @@ cmake --install . --prefix /path/to/somewhere
 # To package a library
 
 cpack -G "ZIP;WIX"
+
+# Setting cache variable from the command line (this only needs provided once as is stored in cmakecache.txt)
+
+cmake -D mySurname:STRING=Mathews
