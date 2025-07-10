@@ -1,0 +1,7 @@
+# Use makefiles as project files generator, Use build/ as the build/output directory that the generated project files will be created 
+
+cmake -G "Unix Makefiles" -B build
+
+# cmake can invoke the build tool on the developer’s behalf
+
+cmake --build /pathTo/build --config Debug --target MyApp

@@ -11,6 +11,9 @@ CTestTestfile.cmake
 _deps
 CMakeUserPresets.json
 
+# Ignore the build drectory that we use for specifcying the output/binary directory for cmake output
+build/
+
 # CLion
 #  JetBrains specific template is maintained in a separate JetBrains.gitignore that can
 #  be found at https://github.com/github/gitignore/blob/main/Global/JetBrains.gitignore
