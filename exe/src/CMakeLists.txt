@@ -30,7 +30,7 @@ set(favColour Green CACHE STRING "my favourite colour" [FORCE])
 # without FORCE, the cache variable can be considered a set-if-not-set cache variable and it will persist once its it set for the first time and not change on subsequent runs.
 
 set(windowsBuild YES CACHE BOOL "If running window build")
-option(LinuxBuild "if running Linux build" NO) # This is the same as the above BOOL type for a cache variable
+option(LinuxBuild "if running Linux build" YES) # This is the same as the above BOOL type for a cache variable
 
 # Creating a list of just creating a string
 set(myList one two three) # one;two;three
@@ -43,6 +43,34 @@ list(LENGTH myList countElements)
 # Example of printing 
 
 message("My full name is ${myFullName}\nGood hey?. MyList is ${myList} which as ${countElements} elements")
+
+# Examples of conditionals
+
+
+if(${windowsBuild}) # ON, YES, TRUE, or Y is interpreted as true, OFF, NO, FALSE, N, IGNORE, NOTFOUND, empty as FALSE
+	message("Running Windows build!")
+endif()
+
+if(windowsBuild OR linuxBuild) # Note we don't need ${} for variables in if() statements
+	message("This is a windows build or Linux build")
+endif()
+
+if(1 GREATER 0)
+	message("1 is greater than 0")
+endif()
+
+if(mySurname STREQUAL "Mathews")
+	message("Your surname is really Mathews")
+endif()
+
+# Can also use regex matches
+if(mySurname MATCHES ".*s$")
+	message("surname ends with an s")
+endif()
+
+if("Hi from ${myName}" MATCHES "Hi from (Stuart|Bruce|Jenny).*")
+message("${CMAKE_MATCH_1} says hello")
+endif()
 
 add_executable(Target1 main.cpp)
 
